@@ -37,7 +37,7 @@ void search(const string& filename, string pattern, string str)
     int strLen = str.length();
     int patternLen = pattern.length();
     int strHash = 0, patternLenHash = 0;
-    int x = 10/*Константа, основа для степеню*/,powerOfX = pow(x, patternLen - 1);
+    int x = 10/*Константа, основа для степеня*/,powerOfX = pow(x, patternLen - 1);
     int i = 0, j = 0, k = 0; // Змiннi для циклiв
 
     while (i < patternLen) { // Обчислюю значення хешу для строки та паттерну

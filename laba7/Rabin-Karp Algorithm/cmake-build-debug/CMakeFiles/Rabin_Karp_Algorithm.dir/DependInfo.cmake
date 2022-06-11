@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/User/Desktop/C++/laboratorna_num_7/Rabin-Karp Algorithm/main.cpp" "C:/Users/User/Desktop/C++/laboratorna_num_7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/Rabin_Karp_Algorithm.dir/main.cpp.obj"
+  "C:/Users/User/Desktop/C++/cppLabs/laba7/Rabin-Karp Algorithm/main.cpp" "C:/Users/User/Desktop/C++/cppLabs/laba7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/Rabin_Karp_Algorithm.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

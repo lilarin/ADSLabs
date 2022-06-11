@@ -1,3 +1,3 @@
-C:/Users/User/Desktop/C++/laboratorna_num_7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/Rabin_Karp_Algorithm.dir
-C:/Users/User/Desktop/C++/laboratorna_num_7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/User/Desktop/C++/laboratorna_num_7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/User/Desktop/C++/cppLabs/laba7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/Rabin_Karp_Algorithm.dir
+C:/Users/User/Desktop/C++/cppLabs/laba7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/User/Desktop/C++/cppLabs/laba7/Rabin-Karp Algorithm/cmake-build-debug/CMakeFiles/rebuild_cache.dir
