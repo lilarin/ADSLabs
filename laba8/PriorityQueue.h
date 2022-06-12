@@ -12,41 +12,58 @@ using namespace std;
 struct Data
 {
     float distance;
-    bool operator<(const Data& other) const { return this->distance < other.distance; }
-    bool operator>(const Data& other) const { return !(*this < other); }
-    bool operator==(const Data& other) const { return this->distance == other.distance; }
-    bool operator!=(const Data& other) const { return !(*this == other); }
+    float health;
+
+    bool operator < (const Data& secondUnit) const {
+        if (distance != secondUnit.distance) {
+            return distance < secondUnit.distance;
+        }
+        return health < secondUnit.health;
+    }
+    bool operator == (const Data& secondUnit) const {
+        return distance == secondUnit.distance;
+    }
+    bool operator != (const Data& secondUnit) const {
+        return distance != secondUnit.distance;
+    }
+    bool operator > (const Data& secondUnit) const {
+        if (distance != secondUnit.distance) {
+            return distance > secondUnit.distance;
+        }
+        return health > secondUnit.health;
+    }
 };
+
 
 struct PriorityQueue {
     int size;
-    vector<Data> container;
+    vector<Data> queue;
 
     int Size() const {
         return size;
     }
 
-    bool isEmpty() {
+    bool isEmpty() const {
         return Size() == 0;
     }
 
-    int getParent(int index) {
+    static int getParent(int index) {
         return (index - 1) / 2;
     }
 
-    int getLeftChild(int index) {
+    static int getLeftChild(int index) {
         return (2 * index + 1);
     }
 
-    int getRightChild(int index) {
+    static int getRightChild(int index) {
         return (2 * index + 2);
     }
 
-    bool IsRoot(int index) {
+    static bool IsRoot(int index) {
         return index == 0;
     }
 
-    bool IsLeaf(int index) {
+    bool IsLeaf(int index) const {
         return getLeftChild(index) >= Size();
     }
 
@@ -55,74 +72,48 @@ struct PriorityQueue {
         {
             return;
         }
-
-        int parentIndex = getParent(index);
-        Data self = container[index];
-        Data parent = container[parentIndex];
-
-        if (self < parent)
-        {
+        Data self = queue[index];
+        Data parent = queue[getParent(index)];
+        if (self < parent) {
             return;
         }
-
-        std::swap(self, parent);
-        siftUp(parentIndex);
+        swap(self, parent);
+        siftUp(getParent(index));
     }
+
     void siftDown(int index) {
-        // if true than this node is a leaf
-        // if not, than at least left child exists
-        if (IsLeaf(index))
-        {
+        if (IsLeaf(index)) {
             return;
         }
 
-        // Get left and right children
-        int childIndex = getLeftChild(index);
-        // Check if node at rightIndex exists
-        if (childIndex + 1 < Size())
-        {
-            // ensure if right index is larger than left index
-            childIndex = std::max<int>(childIndex, childIndex + 1,
-                                            [&](const int& a, const int& b) -> bool
-                                            {
-                                                return container.at(a) < container.at(b);
-                                            });
-        }
+        int maxChildIndex = max(getLeftChild(index), getRightChild(index));
 
-        Data child = container.at(childIndex);
-        Data self = container.at(index);
-
-        if (child < self)
-        {
+        if (queue[maxChildIndex] < queue[index]) {
             return;
         }
-
-        swap(child, self);
-        siftDown(childIndex);
+        swap(queue[maxChildIndex], queue[index]);
+        siftDown(maxChildIndex);
     }
+
     void push(Data data) {
-        container.push_back(data);
+        queue.push_back(data);
         size++;
-        siftUp(Size() - 1);
+        siftUp(size - 1);
     }
 
     Data top() {
-        return container.front();
+        return queue.front();
     }
 
     void pop() {
-        if (isEmpty())
-        {
+        if (isEmpty()) {
             return;
         }
-        swap(container[0], container[Size() - 1]);
+        swap(queue[0], queue[size - 1]);
         size--;
-        container.erase(container.end() - 1);
-
+        queue.erase(queue.end() - 1);
         siftDown(0);
     }
-
-
 };
 
 #endif //LABA8_PRIORITYQUEUE_H
