@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/User/Desktop/C++/cppLabs/laba8/task_1/PriorityQueue.h
+vector
+-
+
+C:/Users/User/Desktop/C++/cppLabs/laba8/task_1/main.cpp
+queue
+-
+cstdlib
+-
+ctime
+-
+iostream
+-
+PriorityQueue.h
+C:/Users/User/Desktop/C++/cppLabs/laba8/task_1/PriorityQueue.h
+
