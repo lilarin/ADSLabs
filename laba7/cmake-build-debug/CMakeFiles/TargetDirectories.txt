@@ -1,3 +1,0 @@
-C:/Users/User/Desktop/C++/laboratorna_num_7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/User/Desktop/C++/laboratorna_num_7/cmake-build-debug/CMakeFiles/laboratorna_num_7.dir
-C:/Users/User/Desktop/C++/laboratorna_num_7/cmake-build-debug/CMakeFiles/edit_cache.dir
