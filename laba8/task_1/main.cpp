@@ -59,7 +59,7 @@ bool testPriorityQueue()
         }
     }
 
-    int myQueueSize = myPriorQueue.Size();
+    int myQueueSize = myPriorQueue.size();
     int stlQueueSize = stlPriorQueue.size();
     float stlTime = testPriorityQueueSpeed<priority_queue<Data>>(priority_queue<Data>());
     float myTime = testPriorityQueueSpeed<PriorityQueue>(PriorityQueue());
@@ -67,8 +67,7 @@ bool testPriorityQueue()
     cout << "Time: " << myTime << ", size: " << myQueueSize << endl;
     cout << "STL priority_queue:" << endl;
     cout << "Time: " << stlTime << ", size: " << stlQueueSize << endl << endl;
-    if (isDataEqual && myQueueSize == stlQueueSize)
-    {
+    if (isDataEqual && myQueueSize == stlQueueSize) {
         cout << "The lab is completed" << endl << endl;
         return true;
     }

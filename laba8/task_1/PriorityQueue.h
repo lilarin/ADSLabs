@@ -36,15 +36,15 @@ struct Data
 
 
 struct PriorityQueue {
-    int size;
+    int size_;
     vector<Data> queue;
 
-    int Size() const {
-        return size;
+    int size() const {
+        return size_;
     }
 
     bool isEmpty() const {
-        return Size() == 0;
+        return size() == 0;
     }
 
     static int getParent(int index) {
@@ -64,7 +64,7 @@ struct PriorityQueue {
     }
 
     bool IsLeaf(int index) const {
-        return getLeftChild(index) >= Size();
+        return getLeftChild(index) >= size();
     }
 
     void siftUp(int index) {
@@ -86,7 +86,14 @@ struct PriorityQueue {
             return;
         }
 
-        int maxChildIndex = max(getLeftChild(index), getRightChild(index));
+        int maxChildIndex;
+
+        if(queue[getLeftChild(index)] < queue[getRightChild(index)]) {
+            maxChildIndex = getRightChild(index);
+        }
+
+        else maxChildIndex = getLeftChild(index);
+
 
         if (queue[maxChildIndex] < queue[index]) {
             return;
@@ -98,8 +105,8 @@ struct PriorityQueue {
 
     void push(Data data) {
         queue.push_back(data);
-        size++;
-        siftUp(size - 1);
+        size_++;
+        siftUp(size_ - 1);
     }
 
     Data top() {
@@ -110,8 +117,8 @@ struct PriorityQueue {
         if (isEmpty()) {
             return;
         }
-        swap(queue[0], queue[size - 1]);
-        size--;
+        swap(queue[0], queue[size_ - 1]);
+        size_--;
         queue.erase(queue.end() - 1);
         siftDown(0);
     }
