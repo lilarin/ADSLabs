@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 template <typename T>
 
 float testPriorityQueueSpeed(T&& priorityQueue)
