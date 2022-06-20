@@ -41,8 +41,7 @@ bool LinkedList::remove(unsigned long long int Key) {
 
 Data* LinkedList::get(unsigned long long int Key) {
     HashNode* node = head;
-    while (node)
-    {
+    while (node) {
         if (node->key == Key) {
             return &node->data;
         }
@@ -53,8 +52,7 @@ Data* LinkedList::get(unsigned long long int Key) {
 
 LinkedList::~LinkedList() {
     HashNode* node = head;
-    while (head)
-    {
+    while (head) {
         node = head;
         head = head->next;
         delete node;

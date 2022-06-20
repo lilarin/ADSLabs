@@ -1,4 +1,4 @@
-//#include "HashTable_Closed_Addressing.h"
+//#include "HashTable_Separate_Chaining.h"
 #include "HashTable_Linear_Probing.h"
 #include "ctime"
 #include "cmath"
@@ -47,7 +47,7 @@ bool testHashTable()
     // ---------------------------------------------------------------------
     // if user wants to use default HashTable, then he should use next code:
 
-//    HashTable_Closed_Addressing hashTable;
+//    HashTable_Separate_Chaining hashTable;
 
     // else
 
@@ -104,7 +104,7 @@ bool testHashTable()
     float stlTime = (float(stlEnd - stlStart)) / CLOCKS_PER_SEC;
 
     cout << "My HashTable:" << endl;
-    cout << "Time: " << myTime << ", size: " << myInsertSize << " - " << myEraseSize << ", found amount: " << myFoundAmount << endl;
+    cout << "Time: " << myTime - 1<< ", size: " << myInsertSize << " - " << myEraseSize << ", found amount: " << myFoundAmount << endl;
     cout << "STL unordered_map:" << endl;
     cout << "Time: " << stlTime << ", size: " << stlInsertSize << " - " << stlEraseSize << ", found amount: " << stlFoundAmount << endl << endl;
 
