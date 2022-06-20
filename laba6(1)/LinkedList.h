@@ -28,7 +28,6 @@ struct LinkedList {
         tail = nullptr;
     }
 
-
     void push_front(matanClassList *newData) {
         Node* node = new Node();
         node->data = *newData;

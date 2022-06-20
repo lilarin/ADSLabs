@@ -12,7 +12,6 @@ int main() {
     LinkedList list;
     srand(time(nullptr));
     int i=0;
-    // vector
     clock_t startTimeVector = clock();
     clock_t startTimeVectorTest1 = clock();
     while (i++ < 50000) {
