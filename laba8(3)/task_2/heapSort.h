@@ -35,7 +35,7 @@ void siftDownHeap(int *arr, int size, int index)
     }
 }
 
-void myHeapSort(int* arr,int size) {
+void heapSort(int* arr,int size) {
     for (int i = size / 2 - 1; i >= 0; i--) {
         siftDownHeap(arr, size, i);
     }

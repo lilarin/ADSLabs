@@ -32,7 +32,7 @@ int main()
     randomPermutation(arr,size);
 
     clock_t HeapTimeStart = clock();
-    myHeapSort(arr, size);
+    heapSort(arr, size);
     clock_t  HeapTimeEnd = clock();
     float HeapTime = (float(HeapTimeEnd - HeapTimeStart)) / CLOCKS_PER_SEC;
 
