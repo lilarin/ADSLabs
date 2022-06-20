@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <ctime>
 #include "LinkedList.h"
 #include "DynamicArray.h"
