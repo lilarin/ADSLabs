@@ -7,10 +7,6 @@
 #IncludeRegexTransform: 
 
 C:/Users/User/Desktop/C++/cppLabs/laba7(2)/task2/main.cpp
-string
--
-iostream
--
 fstream
 -
 cmath
