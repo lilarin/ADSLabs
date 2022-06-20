@@ -153,25 +153,6 @@ struct LinkedList {
         return size;
     }
 
-    Node* reverse() {
-        if (head == nullptr || head->nextElement == nullptr) { // перев?рка, якщо список порожн?й, або м?стить 1 елемент
-            return head;
-        }
-        Node* temp;
-        Node* node = head;
-        Node* nextNode = head->nextElement;
-        head->nextElement = nullptr; // розвертаємо початок списку
-        tail = head;
-        while (nextNode != nullptr) {
-            temp = nextNode->nextElement;
-            nextNode->nextElement = node;
-            node = nextNode;
-            nextNode = temp;
-        }
-        head = node;
-        return node;
-    }
-
     ~LinkedList() {
         clear();
     }

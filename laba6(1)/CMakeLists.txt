@@ -3,4 +3,4 @@ project(laba6)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(laba6 main.cpp LinkedList.h DynamicArray.h)
+add_executable(laba6 main.cpp LinkedList.h DynamicArray.h AdditionasTasks.h)
