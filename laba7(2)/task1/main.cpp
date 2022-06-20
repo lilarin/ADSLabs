@@ -104,7 +104,7 @@ bool testHashTable()
     float stlTime = (float(stlEnd - stlStart)) / CLOCKS_PER_SEC;
 
     cout << "My HashTable:" << endl;
-    cout << "Time: " << myTime - 1<< ", size: " << myInsertSize << " - " << myEraseSize << ", found amount: " << myFoundAmount << endl;
+    cout << "Time: " << myTime << ", size: " << myInsertSize << " - " << myEraseSize << ", found amount: " << myFoundAmount << endl;
     cout << "STL unordered_map:" << endl;
     cout << "Time: " << stlTime << ", size: " << stlInsertSize << " - " << stlEraseSize << ", found amount: " << stlFoundAmount << endl << endl;
 

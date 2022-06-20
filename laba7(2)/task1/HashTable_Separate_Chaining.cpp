@@ -15,7 +15,7 @@ HashTable_Separate_Chaining::HashTable_Separate_Chaining() {
 
 unsigned long long HashTable_Separate_Chaining::hash(unsigned long long key) const
 {
-    return ((12 * key - 2) % 376258005738947) % capacity;
+    return ((11 * key - 2) % 376258005738947) % capacity;
 }
 
 void HashTable_Separate_Chaining::reallocate()
