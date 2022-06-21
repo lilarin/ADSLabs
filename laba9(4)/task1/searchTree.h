@@ -9,8 +9,6 @@
 using namespace std;
 
 struct Data {
-//    int lvl = rand();
-//    int daysPlayed = rand();
     int lvl;
     int daysPlayed;
 
@@ -40,13 +38,6 @@ struct Node {
 
 struct BinarySearchTree {
     Node* root = nullptr;
-
-//    BinarySearchTree() {
-//            root->data;
-//            root->right;
-//            root->left;
-//    }
-
 
     void insert(Data& data) {
         root = insertInner(root, data);
