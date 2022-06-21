@@ -61,8 +61,7 @@ bool testBinarySearchTree()
     int optimalTreeHeight = log2(myInsertSize) + 1;
     for (int i = 0; i < iters; i++)
     {
-//        myTree.erase(dataToErase[i]);
-        myTree.TEST_eraseInner(myTree.root,dataToErase[i]);
+        myTree.erase(dataToErase[i]);
     }
     int myEraseSize = myInsertSize - myTree.size();
     int myFoundAmount = 0;
@@ -103,7 +102,7 @@ bool testBinarySearchTree()
     int myRangeFoundAmount = 0;
     for (int i = 0; i < itersToRangeQueries; i++)
     {
-//        myRangeFoundAmount += myTree.findInRange(dataToRangeQueries[i].first, dataToRangeQueries[i].second);
+        myRangeFoundAmount += myTree.findInRange(dataToRangeQueries[i].first, dataToRangeQueries[i].second).size();
     }
     clock_t myRangeEnd = clock();
     float myRangeTime = (float(myRangeEnd - myRangeStart)) / CLOCKS_PER_SEC;

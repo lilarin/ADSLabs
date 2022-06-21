@@ -4,12 +4,21 @@
 
 #ifndef TASK1_SEARCHTREE_H
 #define TASK1_SEARCHTREE_H
+#include <vector>
 
 using namespace std;
 
 struct Data {
+//    int lvl = rand();
+//    int daysPlayed = rand();
     int lvl;
     int daysPlayed;
+
+    Data()
+        : lvl (rand())
+        , daysPlayed(rand())
+    {
+    }
 
     bool operator < (const Data &d2) const {
         if (lvl != d2.lvl) {
@@ -32,6 +41,13 @@ struct Node {
 struct BinarySearchTree {
     Node* root = nullptr;
 
+//    BinarySearchTree() {
+//            root->data;
+//            root->right;
+//            root->left;
+//    }
+
+
     void insert(Data& data) {
         root = insertInner(root, data);
     }
@@ -48,16 +64,6 @@ struct BinarySearchTree {
         }
         return node;
     }
-
-//    Node* minimum(Node* node) {
-//        Node *current = node;
-//        // Find the leftmost leaf
-//        while (current && current->left != NULL) {
-//            current = current->left;
-//        }
-//
-//        return current;
-//    }
 
     Node* minValueNode(Node *node) {
         if (!node->left) {
@@ -77,48 +83,16 @@ struct BinarySearchTree {
             return nullptr;
         }
         // Find the node to be deleted
-        else if (data < node->data) {
+        if (data < node->data) {
             node->left = eraseInner(node->left, data);
         }
         else if (node->data < data) {
             node->right = eraseInner(node->right, data);
         }
         else {
-            // If the node is with only one child or no child
-            if (!node->left) {
-                Node *temp = node->right;
-                free(node);
-                return temp;
-            }
-            else if (!node->right) {
-                Node *temp = node->left;
-                free(node);
-                return temp;
-            }
-            // If the node has two children
-            Node *temp = minValueNode(node->right);
-            // Place the inorder successor in position of the node to be deleted
-            node->data = temp->data;
-            // Delete the inorder successor
-            node->right = eraseInner(node->right, temp->data);
-        }
-        return node;
-    }
-
-    Node* TEST_eraseInner(Node* node, Data& data) {
-        if (!node) {
-            return nullptr;
-        }
-        else if (data < node->data) {
-            node->left = TEST_eraseInner(node->left, data);
-        }
-        else if (node->data < data) {
-            node->right = TEST_eraseInner(node->right, data);
-        }
-        else {
             if (!node->left && !node->right) {
                 delete node;
-                node = nullptr;
+                return nullptr;
             }
             else if (!node->left) {
                 Node* temp = node;
@@ -130,14 +104,15 @@ struct BinarySearchTree {
                 node = node->left;
                 delete temp;
             }
-            else if (node->left && node->right) {
+            else if (node->right && node->left) {
                 Node* temp = minValueNode(node->right);
                 node->data = temp->data;
-                node->right = TEST_eraseInner(node->right, temp->data);
+                node->right = eraseInner(node->right,temp->data);
             }
         }
-        return nullptr;
+        return node;
     }
+
 
     bool find(Data& data) {
         return findInner(root,data);
@@ -186,6 +161,50 @@ struct BinarySearchTree {
         }
         else return rightHeight + 1;
     }
+
+
+    vector<Data> findInRange(const Data& left, const Data& right) {
+        vector<Data> vector;
+        innerFindInRange(vector, root, left, right);
+        return vector;
+    }
+
+    void innerFindInRange(vector<Data>& vector, Node* node, const Data& left, const Data& right) {
+        if (!node) {
+            return;
+        }
+        else if(node->data < left) {
+            innerFindInRange(vector, node->right, left, right);
+        }
+        else if(right < node->data) {
+            innerFindInRange(vector, node->left, left, right);
+        }
+        else {
+            vector.push_back(node->data);
+            innerFindInRange(vector, node->left, left, right);
+            innerFindInRange(vector, node->right, left, right);
+        }
+    }
+
+
+    void clear(Node* node) {
+        if (!node) {
+            return;
+        }
+        if (node->left) {
+            clear(node->left);
+        }
+        if (node->right) {
+            clear(node->right);
+        }
+        node = nullptr;
+        delete node;
+    }
+
+    ~BinarySearchTree() {
+        clear(root);
+    }
+
 };
 
 #endif //TASK1_SEARCHTREE_H
