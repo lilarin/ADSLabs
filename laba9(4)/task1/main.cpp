@@ -6,13 +6,13 @@
 #include <cmath>
 #include "searchTree.h"
 
-size_t generateRandLong()
+unsigned long long generateRandLong()
 {
     unsigned long long result = 0;
-    size_t iters = rand() % 14 + 6;
-    for (size_t i = 0; i < iters; i++)
+    int iters = rand() % 14 + 6;
+    for (int i = 0; i < iters; i++) {
         result += (rand() % 10) * pow(10, i);
-
+    }
     return result;
 }
 
@@ -52,14 +52,17 @@ bool testBinarySearchTree()
 
     BinarySearchTree myTree;
     clock_t myStart = clock();
-    for (int i = 0; i < iters; i++) {
+    for (int i = 0; i < iters; i++)
+    {
         myTree.insert(dataToInsert[i]);
     }
     int myInsertSize = myTree.size();
     int myTreeHeight = myTree.height();
     int optimalTreeHeight = log2(myInsertSize) + 1;
-    for (int i = 0; i < iters; i++) {
-        myTree.erase(dataToErase[i]);
+    for (int i = 0; i < iters; i++)
+    {
+//        myTree.erase(dataToErase[i]);
+        myTree.TEST_eraseInner(myTree.root,dataToErase[i]);
     }
     int myEraseSize = myInsertSize - myTree.size();
     int myFoundAmount = 0;

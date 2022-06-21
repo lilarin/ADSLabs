@@ -11,12 +11,15 @@ struct Data {
     int lvl;
     int daysPlayed;
 
-    friend bool operator < (const Data &d1, const Data &d2) {
-        return d1.lvl < d2.lvl;
+    bool operator < (const Data &d2) const {
+        if (lvl != d2.lvl) {
+            return lvl < d2.lvl;
+        }
+        else return daysPlayed < d2.daysPlayed;
     }
 
-    friend bool operator == (const Data &d1, const Data &d2) {
-        return d1.lvl == d2.lvl;
+    bool operator == (const Data &d2) const {
+        return lvl == d2.lvl && daysPlayed == d2.daysPlayed;
     }
 };
 
@@ -46,26 +49,71 @@ struct BinarySearchTree {
         return node;
     }
 
-    Node* minimum(Node* node) {
+//    Node* minimum(Node* node) {
+//        Node *current = node;
+//        // Find the leftmost leaf
+//        while (current && current->left != NULL) {
+//            current = current->left;
+//        }
+//
+//        return current;
+//    }
+
+    Node* minValueNode(Node *node) {
         if (!node->left) {
             return node;
         }
-        return minimum(node->left);
+        return minValueNode(node->left);
     }
 
     void erase(Data& data) {
         eraseInner(root, data);
     }
 
-    Node* eraseInner(Node* node, const Data& value) {
+    Node* eraseInner(Node* node, Data& data){
+
+        // Return if the tree is empty
         if (!node) {
             return nullptr;
         }
-        else if (value < node->data) {
-            node->left = eraseInner(node->left, value);
+        // Find the node to be deleted
+        else if (data < node->data) {
+            node->left = eraseInner(node->left, data);
         }
-        else if (node->data < value) {
-            node->right = eraseInner(node->right, value);
+        else if (node->data < data) {
+            node->right = eraseInner(node->right, data);
+        }
+        else {
+            // If the node is with only one child or no child
+            if (!node->left) {
+                Node *temp = node->right;
+                free(node);
+                return temp;
+            }
+            else if (!node->right) {
+                Node *temp = node->left;
+                free(node);
+                return temp;
+            }
+            // If the node has two children
+            Node *temp = minValueNode(node->right);
+            // Place the inorder successor in position of the node to be deleted
+            node->data = temp->data;
+            // Delete the inorder successor
+            node->right = eraseInner(node->right, temp->data);
+        }
+        return node;
+    }
+
+    Node* TEST_eraseInner(Node* node, Data& data) {
+        if (!node) {
+            return nullptr;
+        }
+        else if (data < node->data) {
+            node->left = TEST_eraseInner(node->left, data);
+        }
+        else if (node->data < data) {
+            node->right = TEST_eraseInner(node->right, data);
         }
         else {
             if (!node->left && !node->right) {
@@ -83,12 +131,12 @@ struct BinarySearchTree {
                 delete temp;
             }
             else if (node->left && node->right) {
-                Node* temp = minimum(node->right);
+                Node* temp = minValueNode(node->right);
                 node->data = temp->data;
-                node->right = eraseInner(node->right, temp->data);
+                node->right = TEST_eraseInner(node->right, temp->data);
             }
         }
-        return node;
+        return nullptr;
     }
 
     bool find(Data& data) {
