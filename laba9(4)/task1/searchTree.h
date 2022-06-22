@@ -69,11 +69,9 @@ struct BinarySearchTree {
 
     Node* eraseInner(Node* node, Data& data){
 
-        // Return if the tree is empty
         if (!node) {
             return nullptr;
         }
-        // Find the node to be deleted
         if (data < node->data) {
             node->left = eraseInner(node->left, data);
         }

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/User/Desktop/C++/cppLabs/laba9(4)/task1/main.cpp
+set
+-
+vector
+-
+iostream
+-
+cstdlib
+-
+ctime
+-
+cmath
+-
+searchTree.h
+C:/Users/User/Desktop/C++/cppLabs/laba9(4)/task1/searchTree.h
+
+C:/Users/User/Desktop/C++/cppLabs/laba9(4)/task1/searchTree.h
+vector
+-
+

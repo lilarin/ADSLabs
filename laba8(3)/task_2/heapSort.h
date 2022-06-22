@@ -8,31 +8,44 @@
 using namespace std;
 
 
-static int getLeftChild(int index) {
+
+int getLeftChild(int index) {
     return (2 * index + 1);
 }
 
-static int getRightChild(int index) {
+int getRightChild(int index) {
     return (2 * index + 2);
 }
 
-void siftDownHeap(int *arr, int size, int index)
-{
-    int largest = index, leftChild = getLeftChild(index),rightChild = getRightChild(index);
+bool isLeaf(int index, int size) {
+    return getLeftChild(index) >= size;
+}
 
-    if (leftChild < size && arr[leftChild] > arr[largest]) {
-        largest = leftChild;
+int getMaxChildIndex(int index, int* arr) {
+    if(arr[getLeftChild(index)] < arr[getRightChild(index)]) {
+        return getRightChild(index);
+    }
+    return getLeftChild(index);
+}
+
+void siftDownHeap(int* arr, int size, int index) {
+    if (isLeaf(index,size)) {
+        return;
     }
 
-    if (rightChild < size && arr[rightChild] > arr[largest]) {
-        largest = rightChild;
+    int maxChildIndex;
+    if (getLeftChild(index) + 1 < size) {
+        maxChildIndex = getMaxChildIndex(index,arr);
+    }
+    else {
+        maxChildIndex = getLeftChild(index);
     }
 
-    if (largest != index) {
-        swap(arr[index], arr[largest]);
-
-        siftDownHeap(arr, size, largest);
+    if (maxChildIndex < index) {
+        return;
     }
+    swap(arr[maxChildIndex], arr[index]);
+    siftDownHeap(arr,size,maxChildIndex);
 }
 
 void heapSort(int* arr,int size) {
@@ -40,10 +53,8 @@ void heapSort(int* arr,int size) {
         siftDownHeap(arr, size, i);
     }
 
-    for (int i = size - 1; i > 0; i--) {
-        // Move current root to end
+    for (int i = size - 1; i >= 0; i--) {
         swap(arr[0], arr[i]);
-        // call max heapify on the reduced heap
         siftDownHeap(arr, i, 0);
     }
 }

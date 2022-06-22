@@ -19,7 +19,7 @@ unsigned long long generateRandLong()
 bool testBinarySearchTree()
 {
     srand(time(nullptr));
-    const int iters = 800000;
+    const int iters = 80000;
     const int keysAmount = iters * 2;
     const int itersToRangeQueries = 1000;
 
