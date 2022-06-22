@@ -14,6 +14,13 @@ struct Data
     float distance;
     float health;
 
+    Data()
+        : distance(static_cast<float>(rand()))
+        , health(static_cast<float>(rand()))
+    {}
+
+
+
     bool operator < (const Data& secondUnit) const {
         if (distance != secondUnit.distance) {
             return distance < secondUnit.distance;
@@ -36,11 +43,14 @@ struct Data
 
 
 struct PriorityQueue {
-    int size_;
+
+    int Size;
     vector<Data> queue;
 
+    PriorityQueue():Size(0) {}
+
     int size() const {
-        return size_;
+        return Size;
     }
 
     bool isEmpty() const {
@@ -60,53 +70,56 @@ struct PriorityQueue {
     }
 
     int getMaxChildIndex(int index) {
-        if(queue[getLeftChild(index)] < queue[getRightChild(index)]) {
+        if(queue.at(getLeftChild(index)) < queue.at(getRightChild(index))) {
             return getRightChild(index);
         }
         return getLeftChild(index);
     }
 
-    static bool IsRoot(int index) {
-        return index == 0;
+    static bool isRoot(int index) {
+        return index <= 0;
     }
 
-    bool IsLeaf(int index) const {
+    bool isLeaf(int index) const {
         return getLeftChild(index) >= size();
     }
 
     void siftUp(int index) {
-        if (IsRoot(index))
-        {
+        if (isRoot(index)) {
             return;
         }
-        Data self = queue[index];
-        Data parent = queue[getParent(index)];
-        if (self < parent) {
-            return;
+        Data& self = queue[index];
+        Data& parent = queue[getParent(index)];
+        if (!(self < parent)) {
+            swap(self, parent);
+            siftUp(getParent(index));
         }
-        swap(self, parent);
-        siftUp(getParent(index));
     }
     
     void siftDown(int index) {
-        if (IsLeaf(index)) {
+        if (isLeaf(index)) {
             return;
         }
 
-        int maxChildIndex = getMaxChildIndex(index);
+        int maxChildIndex;
+        if (getLeftChild(index) + 1 < Size) {
+            maxChildIndex = getMaxChildIndex(index);
+        }
+        else {
+            maxChildIndex = getLeftChild(index);
+        }
 
         if (queue[maxChildIndex] < queue[index]) {
             return;
         }
-        
         swap(queue[maxChildIndex], queue[index]);
         siftDown(maxChildIndex);
     }
 
-    void push(Data data) {
+    void push(const Data& data) {
         queue.push_back(data);
-        size_++;
-        siftUp(size_ - 1);
+        Size++;
+        siftUp(Size - 1);
     }
 
     Data top() {
@@ -117,8 +130,8 @@ struct PriorityQueue {
         if (isEmpty()) {
             return;
         }
-        swap(queue[0], queue[size_ - 1]);
-        size_--;
+        iter_swap(queue.begin(), queue.end()-1);
+        Size--;
         queue.erase(queue.end() - 1);
         siftDown(0);
     }

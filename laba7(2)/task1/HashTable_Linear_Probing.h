@@ -11,12 +11,11 @@ using namespace std;
 struct Data {
     string name;
     string subject;
-    string microphoneQuality;
-};
+    int microphoneQuality;
 
-struct HashNode {
-    long long key;
-    Data data;
+    Data()
+        : microphoneQuality (rand())
+    {}
 };
 
 struct Node

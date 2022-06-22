@@ -192,6 +192,18 @@ struct BinarySearchTree {
         delete node;
     }
 
+    void print () {
+        printInner(root);
+    }
+
+    void printInner(Node *node) {
+        if (node) {
+            printInner(node->left);
+            cout << "|" << node->data.lvl << " lvl, " << node->data.daysPlayed << " days |" << endl;
+            printInner(node->right);
+        }
+    }
+
     ~BinarySearchTree() {
         clear(root);
     }

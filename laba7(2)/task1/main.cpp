@@ -1,5 +1,5 @@
-//#include "HashTable_Separate_Chaining.h"
-#include "HashTable_Linear_Probing.h"
+#include "HashTable_Separate_Chaining.h"
+//#include "HashTable_Linear_Probing.h"
 #include "ctime"
 #include "cmath"
 #include <unordered_map>
@@ -47,11 +47,11 @@ bool testHashTable()
     // ---------------------------------------------------------------------
     // if user wants to use default HashTable, then he should use next code:
 
-//    HashTable_Separate_Chaining hashTable;
+    HashTable_Separate_Chaining hashTable;
 
     // else
 
-    HashTable_Linear_Probing hashTable;
+//    HashTable_Linear_Probing hashTable;
 
     // ---------------------------------------------------------------------
 

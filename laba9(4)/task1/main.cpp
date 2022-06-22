@@ -19,8 +19,7 @@ unsigned long long generateRandLong()
 bool testBinarySearchTree()
 {
     srand(time(nullptr));
-
-    const int iters = 80000;
+    const int iters = 800000;
     const int keysAmount = iters * 2;
     const int itersToRangeQueries = 1000;
 
@@ -81,6 +80,10 @@ bool testBinarySearchTree()
     {
         stlTree.insert(dataToInsert[i]);
     }
+
+//    cout << "The contents of the tree:" << endl;
+//    myTree.print();
+
     int stlInsertSize = stlTree.size();
     for (int i = 0; i < iters; i++)
     {

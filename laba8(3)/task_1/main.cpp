@@ -30,7 +30,7 @@ float testPriorityQueueSpeed(T&& priorityQueue)
 bool testPriorityQueue()
 {
     srand(time(nullptr));
-    const int iters = 20000;
+    const int iters = 80000;
     PriorityQueue myPriorQueue;
 
     priority_queue<Data> stlPriorQueue;
@@ -47,7 +47,7 @@ bool testPriorityQueue()
         if (!(myPriorQueue.top() == stlPriorQueue.top()))
         {
             isDataEqual = false;
-            cerr << "Comparing failed on iteration " << i << endl << endl;
+            cout << "Comparing failed on iteration " << i << endl << endl;
             break;
         }
         int removeDataAmount = rand() % insertDataAmount;
